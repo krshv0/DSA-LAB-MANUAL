@@ -1,8 +1,8 @@
-PWD /Users/krishiv/Desktop/School/DSA LAB
+PWD /Users/krishiv/Desktop/School/DSA-LAB-MANUAL
 INPUT /usr/local/texlive/2024/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/krishiv/Desktop/School/DSA LAB/lab_manual.tex
+INPUT /Users/krishiv/Desktop/School/DSA-LAB-MANUAL/lab_manual.tex
 OUTPUT lab_manual.log
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/article.cls
@@ -11,6 +11,8 @@ INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/size12.clo
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/size12.clo
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/setspace/setspace.sty
+INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/setspace/setspace.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
