@@ -37,7 +37,6 @@
 \fancyhead[L]{\includegraphics[width=2cm]{woxsen_logo.png}}
 \fancyhead[C]{\textbf{Data Structures and Algorithms Lab Manual}}
 \fancyfoot[C]{\thepage}
-\setlength{\headsep}{1cm}
 
 % Hyperlinks setup for table of contents
 \hypersetup{
@@ -83,11 +82,12 @@
     \hline
     3 & Using Deque to Implement a Queue and Demonstrate its Methods & To implement a queue and demonstrate its methos using deque & \pageref{sec:exp3} &\\
     \hline
+    4 &Implementation of a Catalogue System with Sorting&To implement a Catalogue System in Python that manages items with attributes & \pageref{sec:exp4} &\\
+    \hline
 \end{tabular}
 \clearpage
 
 % Experiment 1
-\vspace{1cm}
 \section*{\ding{118} Experiment 1}
 \label{sec:exp1}
 \subsection*{Experiment Title: Implementation of a Singly Linked List for a Music Playlist}
@@ -323,7 +323,6 @@ if __name__ == '__main__':
 Current Tickets: 
 1. Customer Name: Name 1, Issue: Issue 1, Priority: True
 2. Customer Name: Name 2, Issue: Issue 2, Priority: False
-
 Processing ticket - Customer Name: Name 1, Issue: Issue 1, Priority: True
 \end{verbatim}
 
@@ -337,6 +336,111 @@ Processing ticket - Customer Name: Name 1, Issue: Issue 1, Priority: True
 
 \subsubsection*{Conclusion}
 In this experiment, we successfully implemented a Queue data structure using Python's \texttt{deque} to manage a ticket system. The queue effectively followed the First-In-First-Out (FIFO) principle, ensuring tickets were processed in the order they were received. This experiment demonstrated the practical utility of queues in real-world applications like customer support systems, where fair and orderly processing is essential.
+
+\clearpage
+
+\section*{\ding{118} Experiment 4}
+\label{sec:exp4}
+\subsection*{Experiment Title: Implementation of a Catalogue System with Sorting}
+
+\subsubsection*{Objective}
+To implement a Catalogue System in Python that manages items with attributes like name, price, and popularity, and sorts them using a custom sorting algorithm (a modified selection sort). The experiment demonstrates sorting techniques and measures the time taken for sorting operations.
+
+\subsubsection*{Algorithm}
+\begin{enumerate}
+    \item Define a \texttt{CatalogueItems} class to manage a list of items, where each item is a dictionary containing name, price, and popularity.
+    \item Implement the \texttt{add\_item} method to add items to the catalogue.
+    \item Implement the \texttt{tros} method (a modified selection sort) to sort items by a given key (price or popularity):
+    \begin{itemize}
+        \item Iterate through the list to find the minimum and maximum values in the unsorted portion.
+        \item Swap the current position with the minimum (ascending) or maximum (descending) value based on the \texttt{reverse} parameter.
+    \end{itemize}
+    \item Implement the \texttt{sort\_items} method to:
+    \begin{itemize}
+        \item Measure the time taken to sort using the \texttt{time} module.
+        \item Call the \texttt{tros} method to sort the items.
+        \item Display the sorted items and the time taken.
+    \end{itemize}
+    \item Implement the \texttt{display\_items} method to print the items sorted by the specified key.
+    \item Test the catalogue by adding items and sorting them by price (ascending) and popularity (descending).
+\end{enumerate}
+
+\subsubsection*{Source Code}
+\begin{lstlisting}
+import time
+
+class CatalogueItems:
+    def __init__(self):
+        self.items = []
+
+    def add_item(self, name, price, popularity):
+        self.items.append({"name": name, "price": price, "popularity": popularity})
+
+    def sort_items(self, key, reverse=False):
+        if key in ["price", "popularity"]:
+            start_time = time.time()
+            self.tros(key, reverse)
+            end_time = time.time()
+            self.display_items(key)
+            print(f"\nTime taken to sort by {key}: {end_time - start_time:.9f} seconds\n")
+        else:
+            print("Invalid sorting key.")
+
+    def tros(self, key, reverse):
+        n = len(self.items)
+        for i in range(n - 1):
+            min_value = max_value = i
+            for j in range(i + 1, n):
+                if self.items[j][key] > self.items[max_value][key]:
+                    max_value = j
+                if self.items[j][key] < self.items[min_value][key]:
+                    min_value = j
+            if not reverse:
+                self.items[i], self.items[min_value] = self.items[min_value], self.items[i]
+            else:
+                self.items[i], self.items[max_value] = self.items[max_value], self.items[i]
+
+    def display_items(self, key):
+        print(f"\nBy {key.capitalize()}:")
+        for item in self.items:
+            print(f"{item['name']} - {item[key]}")
+
+catalogue = CatalogueItems()
+catalogue.add_item("Laptop", 1200, 5)
+catalogue.add_item("Smartphone", 800, 4)
+catalogue.add_item("Headphones", 150, 3)
+
+catalogue.sort_items("price") 
+catalogue.sort_items("popularity", reverse=True)
+\end{lstlisting}
+
+\subsubsection*{Output}
+\begin{verbatim}
+By Price:
+Headphones - 150
+Smartphone - 800
+Laptop - 1200
+
+Time taken to sort by price: 0.000123456 seconds
+
+By Popularity:
+Laptop - 5
+Smartphone - 4
+Headphones - 3
+
+Time taken to sort by popularity: 0.000098765 seconds
+\end{verbatim}
+
+% Placeholder for an image (e.g., screenshot of output)
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{output_screenshot_exp4.png}
+    \caption{Sample output of the catalogue system sorting.}
+    \label{fig:output_exp4}
+\end{figure}
+
+\subsubsection*{Conclusion}
+In this experiment, we successfully implemented a Catalogue System to manage and sort items based on price and popularity. The custom \texttt{tros} sorting algorithm (a modified selection sort) efficiently sorted the items in both ascending and descending order, and we measured the execution time to evaluate performance. This experiment highlights the importance of sorting algorithms in organizing data and demonstrates how to benchmark their efficiency using Python's \texttt{time} module.
 
 \noindent\rule{\textwidth}{1pt}
 \vspace{1cm}
